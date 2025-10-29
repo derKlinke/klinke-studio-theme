@@ -4,7 +4,8 @@ This is a VSCode theme using the same defined color scheme as I use on [my websi
 
 ## Local development
 
-- `make build` packages the extension into `dist/klinke-studio-theme-<version>.vsix` using `vsce`.
+- `make format` runs Prettier across the repository.
+- `make build` packages the extension into `dist/klinke-studio-theme-<version>.vsix` using `vsce` (runs `make format` first).
 - `make install` rebuilds the extension and copies it into your local VS Code extensions folder for quick testing.
 
 ## Continuous delivery

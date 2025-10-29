@@ -5,9 +5,12 @@ VSIX_FILE := $(BUILD_DIR)/$(EXT_NAME)-$(EXT_VERSION).vsix
 VSCODE_EXTENSIONS_DIR ?= $(HOME)/.vscode/extensions
 INSTALL_PATH := $(VSCODE_EXTENSIONS_DIR)/$(EXT_NAME)-$(EXT_VERSION)
 
-.PHONY: build install
+.PHONY: format build install
 
-build:
+format:
+	@npx prettier --write .
+
+build: format
 	@echo "Packaging $(EXT_NAME) $(EXT_VERSION) -> $(VSIX_FILE)"
 	@mkdir -p "$(BUILD_DIR)"
 	@npx @vscode/vsce package --out "$(VSIX_FILE)"

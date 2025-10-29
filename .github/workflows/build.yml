@@ -1,51 +1,51 @@
 name: Build VS Code Theme
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
 permissions:
-  contents: write
+    contents: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
 
-      - name: Install dependencies
-        run: npm install
+            - name: Install dependencies
+              run: npm install
 
-      - name: Build VSIX package
-        run: make build
+            - name: Build VSIX package
+              run: make build
 
-      - name: Determine extension version
-        id: package
-        run: echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
+            - name: Determine extension version
+              id: package
+              run: echo "version=$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
 
-      - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: klinke-studio-theme-${{ steps.package.outputs.version }}
-          path: dist/klinke-studio-theme-${{ steps.package.outputs.version }}.vsix
+            - name: Upload VSIX artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: klinke-studio-theme-${{ steps.package.outputs.version }}
+                  path: dist/klinke-studio-theme-${{ steps.package.outputs.version }}.vsix
 
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ steps.package.outputs.version }}-${{ github.run_number }}
-          name: klinke.studio theme build ${{ github.run_number }}
-          body: |
-            Automated build from commit ${{ github.sha }}.
-            Package version: ${{ steps.package.outputs.version }}.
-          files: dist/klinke-studio-theme-${{ steps.package.outputs.version }}.vsix
-          prerelease: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Create GitHub release
+              uses: softprops/action-gh-release@v1
+              with:
+                  tag_name: v${{ steps.package.outputs.version }}-${{ github.run_number }}
+                  name: klinke.studio theme build ${{ github.run_number }}
+                  body: |
+                      Automated build from commit ${{ github.sha }}.
+                      Package version: ${{ steps.package.outputs.version }}.
+                  files: dist/klinke-studio-theme-${{ steps.package.outputs.version }}.vsix
+                  prerelease: true
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
