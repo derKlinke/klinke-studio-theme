@@ -1,0 +1,25 @@
+{
+  "name": "klinke-studio-theme",
+  "displayName": "klinke.studio.theme",
+  "description": "",
+  "version": "0.0.1",
+  "publisher": "klinke-studio",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "klinke.studio Code Theme",
+        "uiTheme": "vs",
+        "path": "./themes/klinke.studio Code Theme-color-theme.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.0.0"
+  }
+}
