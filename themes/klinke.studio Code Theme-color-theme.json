@@ -259,8 +259,7 @@
             "name": "Functions",
             "scope": ["entity.name.function", "support.function"],
             "settings": {
-                "fontStyle": "bold",
-                "foreground": "#2f3233"
+                "foreground": "#0C0D0F"
             }
         },
         {
