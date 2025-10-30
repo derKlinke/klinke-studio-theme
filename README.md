@@ -2,6 +2,8 @@
 
 This is a VSCode theme using the same defined color scheme as I use on [my website](https://klinke.studio).
 
+![screenshot](screenshot.png)
+
 ## Local development
 
 - `make format` runs Prettier across the repository.
